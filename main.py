@@ -1,3 +1,1 @@
-print("hola")
-print ("mundo")
-print ("probando git")
+print("Este trabajo va a salir cule feo")
