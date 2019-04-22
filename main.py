@@ -1,1 +1,1 @@
-print("Este trabajo va a salir cule feo")
+print("Este es el main")
