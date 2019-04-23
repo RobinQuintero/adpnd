@@ -7,9 +7,8 @@ class Nodo:
 
     def addArista(self, valor, destino):
         self.aristas.append(Arista(valor, destino))
-    
-    def getAristas():
-        return self.__aristas
-    def getValor():
+    def getValor(self):
         return self.__valor
+    def getAristas(self):
+        return self.__aristas
         
