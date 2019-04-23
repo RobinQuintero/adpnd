@@ -1,4 +1,5 @@
 from grafo.nodo import Nodo, Arista
+from automata.transicion import Transicion
 class Estado(Nodo):
     
     def __init__(self, valor, final):
@@ -7,11 +8,9 @@ class Estado(Nodo):
         self.__transiciones = self._Nodo__aristas
         self.addTransicion = self.addArista
         self.__final = final
-        self.__palabra = []
-        
     
-    def addArista(self, valor, destino):
-        self._Nodo__aristas.append(Arista(valor, destino))
+    def addArista(self, valor, simbolo, tope, agregar, destino):
+        self._Nodo__aristas.append(Transicion(valor, simbolo, tope, agregar, destino))
     
     def getValor(self):
         return self.__valor
@@ -21,3 +20,9 @@ class Estado(Nodo):
     
     def esFinal(self):
         return self.__final
+
+    def buscarTransicion(self, simbolo, tope):
+        for t in self.__transiciones:
+            if t.simbolo == simbolo and t.tope == tope:
+                return t
+        return None
