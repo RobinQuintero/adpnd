@@ -17,7 +17,7 @@ automata.conectar("b","b","λ","q","q")
 automata.conectar("a","a","λ","q","q")
 automata.conectar("λ","#","#","q","r")
 
-automata.setPalabra("aabbacabbaa")
+automata.setPalabra("abbacabba")
 eval = automata.Evaluar(automata.getEstados()[0])
 if eval == True:
     print("La palabra se ha validado")

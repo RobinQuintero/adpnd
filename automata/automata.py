@@ -28,14 +28,13 @@ class Automata(Grafo):
     def setPalabra(self, palabra):
         for letra in palabra:
             self.__palabra.append(letra)
+        self.__palabra.append("λ")
     def getPalabra(self):
         return self.__palabra
     def Evaluar(self, estado):
         if estado.esFinal() == True:
             return True
         else:
-            if len(self.__palabra)==0:
-                    self.__palabra.append("λ")
             print(estado.getValor())
             print(self.__palabra)
             print(self.pila)
