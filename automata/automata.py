@@ -28,16 +28,18 @@ class Automata(Grafo):
     def setPalabra(self, palabra):
         for letra in palabra:
             self.__palabra.append(letra)
-        self.__palabra.append("λ")
     def getPalabra(self):
         return self.__palabra
     def Evaluar(self, estado):
         if estado.esFinal() == True:
             return True
         else:
-            print(estado.getValor())
-            print(self.__palabra)
-            print(self.pila)
+            print("------------------------------------------")
+            print("Estado actual: "+estado.getValor())
+            print("Cinta: "+str(self.__palabra))
+            print("Pila: "+str(self.pila))
+            if len(self.__palabra) == 0:
+                self.__palabra.append("λ")
             transicion = estado.buscarTransicion(self.__palabra[0], self.pila.inspeccionar())
             if(transicion is not None):
                 self.__palabra = self.__palabra[1:]
@@ -47,6 +49,7 @@ class Automata(Grafo):
                         pass
                     else:
                         self.pila.incluir(elem)
-                print("Se hará una transición")
+                print("Se utiliza la sgte transición: "+str(transicion))
+                print("-----------------------------------------------")
                 return self.Evaluar(transicion.destino)
         
