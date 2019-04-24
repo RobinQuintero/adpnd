@@ -4,7 +4,6 @@ class Estado(Nodo):
     
     def __init__(self, valor, final):
         super().__init__(valor)
-        self.__valor = self._Nodo__valor
         self.__transiciones = self._Nodo__aristas
         self.addTransicion = self.addArista
         self.__final = final
@@ -13,7 +12,7 @@ class Estado(Nodo):
         self._Nodo__aristas.append(Transicion(valor, simbolo, tope, agregar, destino))
     
     def getValor(self):
-        return self.__valor
+        return self._Nodo__valor
     
     def getTransiciones(self):
         return self.__transiciones
