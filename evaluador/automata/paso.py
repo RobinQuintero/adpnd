@@ -1,14 +1,13 @@
 from evaluador.grafo.grafo import Grafo, Nodo
-from evaluador.automata.estado import Estado, Transicion
+from evaluador.automata.estado import Estado
 from evaluador.lib.pila import Pila
 
 class Paso:
     def __init__(self, estadoActual, posCinta, pila):
-        self.estadoActual = estadoActual
+        self.estadoActual = estadoActual.getValor()
         self.posCinta = posCinta
-        self.pila = pila
-        self.transicion = None
-    
+        self.pila = str(pila)
+        self.transicion = ""
     def setTransicion(self, transicion):
         self.transicion = transicion
     def __str__(self):

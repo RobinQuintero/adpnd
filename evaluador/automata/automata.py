@@ -38,17 +38,17 @@ class Automata(Grafo):
     def __Evaluar(self, estado, pospalabra, pasos):
         if estado.esFinal() == True:
             paso = Paso(estado, pospalabra, self.pila)
-            pasos.append(paso)
+            pasos.append(paso.__dict__)
         else:
             paso = Paso(estado, pospalabra, self.pila)
             transicion = estado.buscarTransicion(self.__palabra[pospalabra], self.pila.inspeccionar())
             if transicion is not None:
-                paso.setTransicion(transicion)
+                paso.setTransicion(str(transicion))
                 self.pila.extraer()
                 self.llenarpila(transicion.agregar)
-                pasos.append(paso)
+                pasos.append(paso.__dict__)
                 return self.__Evaluar(transicion.destino, pospalabra+1, pasos)
-            pasos.append(paso)
+            pasos.append(paso.__dict__)
         return pasos
 
     def Evaluar(self, palabra):

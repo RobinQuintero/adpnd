@@ -17,6 +17,6 @@ class JSONResponse(HttpResponse):
 def evaluador(request, palabra):
     if request.method == 'GET':
         eval = Evaluador().evaluar(palabra)
-        return JSONResponse(json.dumps(eval.aceptada), status=200)
+        return JSONResponse(eval.__dict__, status=200)
     if request.method == 'POST':
         return HttpResponse(status=403)

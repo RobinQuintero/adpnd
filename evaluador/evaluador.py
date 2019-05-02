@@ -23,7 +23,10 @@ class Evaluador:
 
     def evaluar(self, palabra):
         pasos = self.automata.Evaluar(palabra)
-        aceptada = pasos[-1].estadoActual.esFinal()
+        if pasos[-1]['estadoActual'] == "r":
+            aceptada = True
+        else:
+            aceptada = False
         return Resultado(aceptada, pasos)
 
 
