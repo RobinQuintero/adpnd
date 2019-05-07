@@ -1,21 +1,56 @@
 from tkinter import *    # Carga módulo tk (widgets estándar)
 from tkinter import ttk
-#import requests
+import requests
+import json
 
-
+botones_cinta = []
+label_cinta = []
+cinta = []
 ##
 raiz = Tk()
 palabra =""
 def validar():
-    req = requests.get("http://127.0.0.1:8000/evaluar/"+palabra)
-    print(req.text)
+    global botones_cinta
+    global cinta
+    global label_cinta
+    for boton in botones_cinta:
+        w.delete(boton)
+    for label in label_cinta:
+        w.delete(label)
+    
+    botones_cinta = []
+    label_cinta = []
+    cinta = []
+    palabra = entry.get()
+    req = requests.get("https://adpnd.herokuapp.com/evaluar/"+palabra)
+    pasos = json.loads(req.text)['pasos']
+    for c in palabra: 
+        cinta.append(c)
+    x0 = 60
+    y0 = 20
+    x1 = 80
+    y1 = 40
+    for m in cinta:
+        btn = w.create_rectangle(x0,y0,x1,y1,fill="gray")
+        label = w.create_text(x0 + 8,y0+10,text=m)
+        x0 = x0 + 20
+        x1 = x1 + 20
+        botones_cinta.append(btn)
+        label_cinta.append(label)
+    for paso in pasos:
+        print(paso)
+
+
+
 
 ##lienzo = Canvas(raiz,width=500,height=500,bg = "#1E90FF")
 raiz.geometry("800x500")
 
 ##lienzo.create_text(10,10,text="Automata de pila")
-Entry(raiz, textvariable=palabra, width=100).pack()
-Button(raiz, text="Validar", command=validar).pack()
+entry = Entry(raiz, textvariable=palabra, width=20)
+entry.pack()
+button = Button(raiz, text="Validar", command=validar)
+button.pack()
 
 
 
@@ -46,7 +81,9 @@ texto2= w.create_text(300,198,fill="white",font="Algerian 16 bold",text="q",acti
 arco2 = w.create_arc(260, 90, 340, 240,extent=180,width="2",style=ARC,outline="red",activeoutline="green",activewidth="3")
 flecha2 = w.create_line(340,170,340,171,arrow=LAST,fill="red",activefill="green",width="2",activewidth="3")
 qr = w.create_line(350,200,450,200,arrow=LAST,width=3,activefill="magenta")
-pila = w.create_rectangle(600,90,625,160,fill="magenta",activefill="cyan")
+
+#pila =  w.create_rectangle(600,90,625,110,fill="gray")
+
 
 points = [430,210,430,190, 450, 200]
 
