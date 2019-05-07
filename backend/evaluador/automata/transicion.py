@@ -8,4 +8,4 @@ class Transicion(Arista):
         self.agregar = agregar
 
     def __str__(self):
-        return "'"+self.simbolo+","+self.tope+"/"+str(self.agregar)+"' -> ["+self.destino.getValor()+"]"
+        return self.simbolo+","+self.tope+"/"+str(self.agregar)
