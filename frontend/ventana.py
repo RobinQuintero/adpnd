@@ -21,4 +21,7 @@ class Ventana:
         self.automata.lienzo.delete(self.automata.mensaje)
         self.validador.validar(self.automata,self.entry.get())
 if __name__ == "__main__":
-    Ventana()
+    try:
+        Ventana()
+    except:
+        print(" ")
