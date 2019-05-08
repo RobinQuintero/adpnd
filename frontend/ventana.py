@@ -1,12 +1,12 @@
-from tkinter import *    # Carga módulo tk (widgets estándar)
+from tkinter import *
 from tkinter import ttk
 import requests
 import json
+import time
 
 botones_cinta = []
 label_cinta = []
 cinta = []
-##
 raiz = Tk()
 palabra =""
 def validar():
@@ -38,9 +38,9 @@ def validar():
         botones_cinta.append(btn)
         label_cinta.append(label)
     for paso in pasos:
+
         print(paso)
-
-
+        time.sleep(3)
 
 
 ##lienzo = Canvas(raiz,width=500,height=500,bg = "#1E90FF")
