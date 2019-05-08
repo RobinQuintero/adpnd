@@ -30,6 +30,7 @@ class Validador:
             automata.botones_cinta.append(btn)
             automata.label_cinta.append(label)
         for paso in pasos:
+            print(paso['transicion'])
             try:
                 for boton in automata.botones_pila:
                     lienzo.delete(boton)
@@ -57,5 +58,21 @@ class Validador:
                 y0 = y0 - 30
                 y1 = y1 - 30
                 lienzo.update()
-            time.sleep(1)
-            automata.desactivarEstado(paso['estadoActual'])
+            try:
+                time.sleep(1.5)
+                automata.activarTransicion(str(paso['transicion']['transicion']))
+                lienzo.update()
+                time.sleep(1.5)
+                automata.desactivarTransicion(str(paso['transicion']['transicion']))
+                automata.desactivarEstado(paso['estadoActual'])
+            except:
+                print("a")
+        mensaje = lienzo.create_text([400, 100], fill="green", text="")
+        if json.loads(req.text)['aceptada']:
+            lienzo.delete(mensaje)
+            lienzo.update()
+            mensaje = lienzo.create_text([400, 100], fill="green", text="PALABRA ACEPTADA")
+        else:
+            lienzo.delete(mensaje)
+            lienzo.update()
+            mensaje = lienzo.create_text([400, 100], fill="red", text="PALABRA RECHAZADA")
