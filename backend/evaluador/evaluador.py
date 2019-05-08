@@ -17,9 +17,9 @@ class Evaluador:
         self.automata.conectar("c","#","#","p","q")
         self.automata.conectar("c","b","b","p","q")
         self.automata.conectar("c","a","a","p","q")
-        self.automata.conectar("b","b","λ","q","q")
-        self.automata.conectar("a","a","λ","q","q")
-        self.automata.conectar("λ","#","#","q","r")
+        self.automata.conectar("b","b","*","q","q")
+        self.automata.conectar("a","a","*","q","q")
+        self.automata.conectar("*","#","#","q","r")
 
     def evaluar(self, palabra):
         pasos = self.automata.Evaluar(palabra)

@@ -30,7 +30,7 @@ class Automata(Grafo):
 
     def llenarpila(self, elementos):
         for elem in elementos:
-            if elem == "λ":
+            if elem == "*":
                 pass
             else:
                 self.pila.incluir(elem)
@@ -55,5 +55,5 @@ class Automata(Grafo):
         pasos = []
         for letra in palabra:
             self.__palabra.append(letra)
-        self.__palabra.append("λ")
+        self.__palabra.append("*")
         return self.__Evaluar(self.__estados[0], 0, pasos)

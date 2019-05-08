@@ -11,10 +11,14 @@ class Ventana:
         self.entry = Entry(self.raiz,  width=80)
         self.entry.pack()
         self.validador = Validador()
-        self.button = Button(self.raiz, text="Validar", command=lambda: self.validador.validar(self.automata,self.entry.get()))
+        self.button = Button(self.raiz, text="Validar", command=lambda: self.validar())
         self.button.pack()
         self.raiz.configure(bg = "#e0e0e0")
         self.raiz.mainloop()
 
+    def validar(self):
+        self.automata.actualizar(self.raiz)
+        self.automata.lienzo.delete(self.automata.mensaje)
+        self.validador.validar(self.automata,self.entry.get())
 if __name__ == "__main__":
     Ventana()

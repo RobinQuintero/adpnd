@@ -4,17 +4,18 @@ import time
 import ast
 class Validador:
     def validar(self, automata, palabra):
+        
         lienzo = automata.lienzo
         for boton in automata.botones_cinta:
             lienzo.delete(boton)
         for label in automata.label_cinta:
             lienzo.delete(label)
-        
+        lienzo.update()
         automata.botones_cinta = []
         automata.label_cinta = []
         automata.cinta = []
         self.palabra = palabra
-        req = requests.get("https://adpnd.herokuapp.com/evaluar/"+palabra)
+        req = requests.get("http://127.0.0.1:8000/evaluar/"+palabra)
         pasos = json.loads(req.text)['pasos']
         for c in palabra: 
             automata.cinta.append(c)
@@ -67,12 +68,10 @@ class Validador:
                 automata.desactivarEstado(paso['estadoActual'])
             except:
                 print("a")
-        mensaje = lienzo.create_text([400, 100], fill="green", text="")
+        
         if json.loads(req.text)['aceptada']:
-            lienzo.delete(mensaje)
-            lienzo.update()
-            mensaje = lienzo.create_text([400, 100], fill="green", text="PALABRA ACEPTADA")
+            automata.mensaje = lienzo.create_text([400, 100], fill="green", text="PALABRA ACEPTADA")
         else:
-            lienzo.delete(mensaje)
-            lienzo.update()
-            mensaje = lienzo.create_text([400, 100], fill="red", text="PALABRA RECHAZADA")
+            automata.mensaje = lienzo.create_text([400, 100], fill="red", text="PALABRA RECHAZADA")
+        
+        
